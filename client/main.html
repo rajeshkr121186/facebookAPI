@@ -48,53 +48,6 @@
     </div>
   </div>
   <script>
-    $(document).ready(function () {
-      $("#album").click(function () {
-        $("#jumbotron h2").html("Album");
-        $("#backArrow").attr("style", "display:none;");
-        var userData = JSON.parse(getCookie('userId'));
-        getAlbums(function (result) {
-          //console.log(result);
-          var album = "";
-          for (let i = 0; i < result.data.length; i++) {
-            album += '<div class="col-md-3"><a class="albumClick" data-value="' + result.data[i]["id"] + '" style="cursor:pointer;">';
-            album += '<img src="' + makeFacebookPhotoURL(result.data[i]["cover_photo"]["id"], userData.authResponse.accessToken) + '" class="img-rounded" style="width: 200px;height: 200px;padding: 10px;">';
-            album += '</a></div>';
-          }
-          $("#GaleryList").html(album);
-          $(".albumClick").click(function (event) {
-            $("#backArrow").attr("style", "display:block;");
-            getPhotosForAlbumId($(event.currentTarget).attr("data-value"), function (result, albumPhotosResponse) {
-              //console.log(albumPhotosResponse)
-              var album = "";
-              for (let i = 0; i < albumPhotosResponse.data.length; i++) {
-                album += '<div class="col-md-3"><a class="albumClick" data-value="' + albumPhotosResponse.data[i]["id"] + '">';
-                album += '<img src="' + makeFacebookPhotoURL(albumPhotosResponse.data[i]["id"], userData.authResponse.accessToken) + '" class="img-rounded" style="width: 200px;height: 200px;padding: 10px;">';
-                album += '</a></div>';
-              }
-              $("#GaleryList").html(album);
-            });
-          });
-        });
-      });
-      $("#photos").click(function () {
-        $("#jumbotron h2").html("Photos");
-        $("#backArrow").attr("style", "display:none;");
-        getPhotos(function (result) {
-          //console.log(result)
-          var album = "";
-          for (let i = 0; i < result.length; i++) {
-            album += '<div class="col-md-3">';
-            album += '<img src="' + result[i]["url"] + '" class="img-rounded" style="width: 200px;height: 200px;padding: 10px;">';
-            album += '</div>';
-          }
-          $("#GaleryList").html(album);
-        });
-      });
-      $("#backButtonAlbum").click(function () {
-        $("#album").click();
-      });
-    });
 
     $(document).ready(function () {
       $("#album").click(function () {
