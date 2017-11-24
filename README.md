@@ -9,5 +9,5 @@ To run the application just install Meteor, on termianl go to the directory and 
 
 On termianl:
 
-> cd /user/projectDirectory/
-> meteor run
+>> cd /user/projectDirectory/
+>> meteor run
